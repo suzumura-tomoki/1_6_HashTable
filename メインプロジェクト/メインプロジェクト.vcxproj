@@ -140,9 +140,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="DoublyLinkedList.h" />
+    <ClInclude Include="HashTable.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DoublyLinkedList.inl" />
+    <None Include="HashTable.inl" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

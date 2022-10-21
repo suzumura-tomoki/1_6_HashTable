@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{d4370a83-f019-4327-b8e1-3698317bc077}</ProjectGuid>
+    <ProjectGuid>{1befe418-38eb-464e-9392-37bd5781787c}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
     <ConfigurationType>Application</ConfigurationType>
@@ -33,16 +33,28 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <ItemGroup>
+    <ClInclude Include="ManualTest_List.h" />
+    <ClInclude Include="ManualTest_Queue.h" />
+    <ClInclude Include="ManualTest_Sort.h" />
+    <ClInclude Include="ManualTest_Stack.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="test.cpp" />
+    <ClCompile Include="ManualTest_List.cpp" />
+    <ClCompile Include="ManualTest_Queue.cpp" />
+    <ClCompile Include="ManualTest_Sort.cpp" />
+    <ClCompile Include="ManualTest_Stack.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Test_hashTable.cpp" />
+    <ClCompile Include="Test_Queue.cpp" />
+    <ClCompile Include="Test_Sort.cpp" />
+    <ClCompile Include="Test_list.cpp" />
+    <ClCompile Include="Test_Stack.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\メインプロジェクト\メインプロジェクト.vcxproj">

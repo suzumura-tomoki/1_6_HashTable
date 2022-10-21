@@ -1,4 +1,7 @@
 #pragma once
+//#pragma inline_depth(16)//既定が１６
+
+#include<string>
 
 /**
  * @brief 双方向リストのクラス\n
@@ -19,6 +22,13 @@ private:
 
 public:
 
+	/** @brief ソート順の列挙 */
+	enum class SortOrder
+	{
+		ASCENDING_ORDER,
+		DESCENDING_ORDER,
+	};
+
 	/**
 	 * @brief 双方向リストのコンストイテレータ\n
 	 *		  ＊演算子または->演算子でデータにアクセスできます
@@ -26,7 +36,7 @@ public:
 	class ConstIterator {
 
 		friend DoublyLinkedList<Type>;
-		
+
 	public:
 		/** @brief コンストラクタ*/
 		ConstIterator();
@@ -265,7 +275,57 @@ public:
 	 */
 	ConstIterator GetConstEnd()const;
 
+	/**
+	 * @brief データからソートに使用するキーを取得する関数オブジェクトのポインタ型
+	 * @tparam KeyType キーの型
+	 * @param[in] リストに格納しているデータ
+	 * @return データから取り出したソートに使用するキー
+	 */
+	template<typename KeyType>
+	using FuncGetKey = const KeyType& (*)(const Type&);
+
+	/**
+	 * @brief リストをKeyType型のキーについてソートします
+	 * @tparam KeyType キーの型
+	 * @param[in] order 昇順または降順の指定
+	 * @param[in] GetKey 格納されているデータからconst KeyType&型のキーを取得する関数オブジェクトのポインタ
+	 */
+	template<typename KeyType>
+	void Sort(SortOrder order, FuncGetKey<KeyType> GetKey);
+
 private:
+	friend Iterator;
+	friend ConstIterator;
+
+	/**
+	 * @brief 再帰しながらリストをKeyType型のキーについてソートします
+	 * @tparam KeyType キーの型
+	 * @param[in] order 昇順または降順の指定
+	 * @param[in] GetKey 格納されているデータからconst KeyType&型のキーを取得する関数オブジェクトのポインタ
+	 * @param[in] head 先頭のイテレータ
+	 * @param[in] tail 末尾のイテレータ
+	 * @param[in] _size 要素の数
+	 */
+	template<typename KeyType>
+	void QuickSort(SortOrder order, FuncGetKey<KeyType> GetKey, Iterator head, Iterator tail, uint32_t _size);
+
+	/**
+	 * @brief ３つのキーからピボットを取得します
+	 * @tparam KeyType キーの型
+	 * @param[in] head 先頭要素のキー
+	 * @param[in] middle 中央要素のキー
+	 * @param[in] tail 末尾要素のキー
+	 * @return ３つの引数の中央値へのポインタ
+	 */
+	template<typename KeyType>
+	const KeyType* GetPivot(const KeyType& head, const KeyType& middle, const KeyType& tail);
+
+	/**
+	 * @brief イテレータの示すデータを入れ替えます
+	 * @param[in] it1 入れ替えるデータのイテレータ
+	 * @param[in] it2 入れ替えるデータのイテレータ
+	 */
+	void Swap(Iterator& it1, Iterator& it2);
 
 	/** @brief 末尾を示すダミー要素　データは格納されない */
 	Node dummy;
