@@ -16,18 +16,21 @@ const int BUCKET_SIZE = 16;
 
 /**
  * @brief ハッシュ関数
- * @param[in]	  各テストに共通した設定を定義します
+ * @param[in] key キー
+ * @return ハッシュ値
  */
 uint16_t HashFunc(const int& key) {
 	return key % BUCKET_SIZE;
 }
 
-/** @brief ID:ハッシュテーブル-1 用のハッシュ関数*/
+/**
+ * @brief テストケースTestHashTableBehavior-DifferentHashFunc用のハッシュ関数
+ * @param[in] key キー
+ * @return ハッシュ値
+ */
 uint16_t DifferentHashFunc(const int& key) {
 	return (key * key)% BUCKET_SIZE;
 };
-
-
 
 /**
  * @brief テストフィクスチャ\n
@@ -41,14 +44,6 @@ protected:
 	}
 	HashTable<int, int, HashFunc, BUCKET_SIZE> table;
 };
-
-TestHashTable:public ::testing::Test::TestHashTable:public ::testing::Test()
-{
-}
-
-TestHashTable:public ::testing::Test::~TestHashTable:public ::testing::Test()
-{
-}
 
 #pragma region ================================= クラスの挙動 =====================================
 
