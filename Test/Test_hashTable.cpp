@@ -10,17 +10,45 @@
 //=======================================
 // 宣言・定義
 //=======================================
+
+/** @brief バケットの数*/
 const int BUCKET_SIZE = 16;
 
-const int& HashFunc(const int& key) {
+/**
+ * @brief ハッシュ関数
+ * @param[in]	  各テストに共通した設定を定義します
+ */
+int& HashFunc(int& key) {
 	return key % BUCKET_SIZE;
 }
 
-const int& DifferentHashFunc(const int& key) { 
+/** @brief ID:ハッシュテーブル-1 用のハッシュ関数*/
+int& DifferentHashFunc(int& key) { 
 	return (key * key)% BUCKET_SIZE;
 };
 
-HashTable<int, int, HashFunc, BUCKET_SIZE> table;
+
+
+/**
+ * @brief テストフィクスチャ\n
+ *		  各テストに共通した設定を定義します
+ */
+class TestHashTable:public ::testing::Test
+{
+protected:
+	void SetUp() {
+
+	}
+	HashTable<int, int, HashFunc, BUCKET_SIZE> table;
+};
+
+TestHashTable:public ::testing::Test::TestHashTable:public ::testing::Test()
+{
+}
+
+TestHashTable:public ::testing::Test::~TestHashTable:public ::testing::Test()
+{
+}
 
 #pragma region ================================= クラスの挙動 =====================================
 
@@ -60,26 +88,19 @@ TEST(TestHashTableBehavior, DifferentHashFunc) {
 #pragma region ================================= データ数の取得 =====================================
 
 /**********************************************************************************//**
-	@brief		リストが空である場合のデータ数の取得テスト
+	@brief		ハッシュテーブルが空である場合のデータ数の取得テスト
 	@details	ID:ハッシュテーブル-2\n
-				挿入、検索、削除を行い、全ての戻り値がTRUEにであれば成功です\n
+				戻り値が0であれば成功です\n
 *//***********************************************************************************/
-TEST(TestHashTableBehavior, DifferentHashFunc) {
+TEST(TestHashTableGetSize, WhenEmpty) {
+
+
 
 	//ひとつ目のクラスの挙動を確認
 	EXPECT_TRUE(table.Insert(0, 0));
 	EXPECT_TRUE(table.Find(0));
 	EXPECT_TRUE(table.Erase(0));
 
-
-	//算出方法の異なるハッシュ関数を渡したクラスの挙動を確認
-
-	constexpr auto DifferentFunc = [](const int& key)->const int& {return key * 11 % BUCKET_SIZE; };
-
-	HashTable<int, int, DifferentFunc, BUCKET_SIZE> tableB;
-	EXPECT_TRUE(tableB.Insert(0, 0));
-	EXPECT_TRUE(tableB.Find(0));
-	EXPECT_TRUE(tableB.Erase(0));
 
 }
 
