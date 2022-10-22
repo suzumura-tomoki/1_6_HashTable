@@ -39,9 +39,12 @@ uint16_t DifferentHashFunc(const int& key) {
 class TestHashTable:public ::testing::Test
 {
 protected:
-	void SetUp() {
+	/** @brief ŠJnˆ—*/
+	void SetUp() {/*‰½‚à‚µ‚È‚¢*/ }
 
-	}
+	/** @brief I—¹ˆ—*/
+	void TearDown(){/*‰½‚à‚µ‚È‚¢*/}
+
 	HashTable<int, int, HashFunc, BUCKET_SIZE> table;
 };
 
