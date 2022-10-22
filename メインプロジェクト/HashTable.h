@@ -14,7 +14,7 @@
 template<
 	typename Key,
 	typename Value,
-	int& HashFunc(Key&),
+	uint16_t HashFunc(const Key&),
 	int bucketSize = 16
 >
 class HashTable

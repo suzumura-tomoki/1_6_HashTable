@@ -11,7 +11,7 @@
 //=======================================
 const int BUCKET_SIZE = 16;
 
-const int& HashFunc(const int& key) {
+int& HashFunc(int& key) {
 	return key % BUCKET_SIZE;
 }
 
