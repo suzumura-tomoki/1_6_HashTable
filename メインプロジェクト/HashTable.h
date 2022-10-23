@@ -1,5 +1,6 @@
 #pragma once
 #include"DoublyLinkedList.h"
+#include<array>
 
 /**
  * @brief コンテナクラス\n

@@ -39,6 +39,7 @@
     <ClInclude Include="ManualTest_Sort.h" />
     <ClInclude Include="ManualTest_Stack.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Test_HashTable.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ManualTest_HashTable.cpp" />

@@ -10,6 +10,11 @@
 //--------------------------------------------------------------------------------
 
 // コンパイルが通れば成功 
+//#define GET_SIZE_WHEN_CONST
+//#define FIND_WHEN_CONST
 
 // コンパイルが通らなければ成功
 //#define IRREGULAR_HASH_FUNC
+//#define INSERT_WHEN_CONST
+//#define ERASE_WHEN_CONST
+
