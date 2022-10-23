@@ -57,9 +57,10 @@ public:
 	/**
 	 * @brief データを検索します
 	 * @param[in] key キー
-	 * @return 未定
+	 * @param[out] destination 検索したデータのコピー先
+	 * @return 成否
 	 */
-	bool Find(Key key);
+	bool Find(Key key, Value& destination)const;
 
 private:
 
