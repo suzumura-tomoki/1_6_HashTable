@@ -33,7 +33,7 @@ inline bool HashTable<Key, Value, HashFunc, bucketSize>::Erase(Key key)
 }
 
 template<typename Key, typename Value, uint16_t HashFunc(const Key&), int bucketSize>
-inline bool HashTable<Key, Value, HashFunc, bucketSize>::Find(Key key)
+inline bool HashTable<Key, Value, HashFunc, bucketSize>::Find(Key key, Value& destination)const
 {
 	return false;
 }
