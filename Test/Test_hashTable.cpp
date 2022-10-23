@@ -22,17 +22,17 @@
 				挿入、検索、削除を行い、全ての戻り値がTRUEにであれば成功です\n
 *//***********************************************************************************/
 TEST_F(TestHashTable, BehaviorTestDifferentHashFunc) {
-
+	int dest;
 	//ひとつ目のクラスの挙動を確認
 	EXPECT_TRUE(table.Insert(0, 0));
-	EXPECT_TRUE(table.Find(0));
+	EXPECT_TRUE(table.Find(0, dest));
 	EXPECT_TRUE(table.Erase(0));
 
 
 	//算出方法の異なるハッシュ関数を渡したクラスの挙動を確認
 	HashTable<int, int, DifferentHashFunc, BUCKET_SIZE> tableB;
 	EXPECT_TRUE(tableB.Insert(0, 0));
-	EXPECT_TRUE(tableB.Find(0));
+	EXPECT_TRUE(tableB.Find(0, dest));
 	EXPECT_TRUE(tableB.Erase(0));
 
 }
