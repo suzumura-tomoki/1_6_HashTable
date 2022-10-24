@@ -98,3 +98,19 @@ inline const int& HashTable<Key, Value, HashFunc, bucketSize>::GetBucketIndex(co
 {
 	return HashFunc(key) % bucketSize;
 }
+
+template<typename Key, typename Value, uint16_t HashFunc(const Key&), int bucketSize>
+inline bool HashTable<Key, Value, HashFunc, bucketSize>::Find(const Key& KEY, typename DoublyLinkedList<Pair>::ConstIterator& destination) const
+{
+	//TODO Find(const Key& KEY, typename DoublyLinkedList<Pair>::ConstIterator& destination)
+	//同じキーの要素を探索
+	for (int i = 0; i < BUCKET_SIZE; i++) {
+		if (it->key == key)//コンストラクタで比較演算子が有効なものか判断
+		{
+			destination = it->value;
+			return true;
+		}
+		it++;
+	}
+	return false;
+}

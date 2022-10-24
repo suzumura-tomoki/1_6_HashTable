@@ -71,6 +71,14 @@ private:
 	/** @brief 格納するバケットの添え字を取得します */
 	const int& GetBucketIndex(const Key& key)const;
 
+	/** 
+	 * @brief バケットからキーが一致する要素のイテレータを取得します 
+	 * @param[in] key 格納場所を示すキー
+	 * @param[out] destination 検索した要素のイテレータを格納します
+	 * @return キーと一致するデータが見つからないと検索に失敗してfalseとなります
+	 */
+	bool Find(const Key& KEY, typename DoublyLinkedList<Pair>::ConstIterator& destination)const;
+
 	/** @brief バケットの配列 */
 	std::array<DoublyLinkedList<Pair>, bucketSize> buckets;
 
