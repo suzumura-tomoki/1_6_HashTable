@@ -27,13 +27,13 @@ inline bool HashTable<Key, Value, HashFunc, bucketSize>::Insert(const Key& KEY, 
 {
 	//同じキーが格納されていると挿入しない
 	int dest;
-	if (Find(key, dest)) {
+	if (Find(KEY, dest)) {
 		return false;
 	}
 
 	//バケットの後ろに挿入
-	DoublyLinkedList<Pair>& bucket = buckets[GetBucketIndex(key)];
-	bool&& result = bucket.Insert(bucket.GetEnd(), Pair({ key, value }));
+	DoublyLinkedList<Pair>& bucket = buckets[GetBucketIndex(KEY)];
+	bool&& result = bucket.Insert(bucket.GetEnd(), Pair({ KEY, value }));
 
 	if (result) {
 		size++;
@@ -47,7 +47,7 @@ inline bool HashTable<Key, Value, HashFunc, bucketSize>::Erase(const Key& KEY)
 {
 
 	//指定されたキーの要素を検索
-	DoublyLinkedList<Pair>& bucket = buckets[GetBucketIndex(key)];
+	DoublyLinkedList<Pair>& bucket = buckets[GetBucketIndex(KEY)];
 	DoublyLinkedList<Pair>::Iterator it;
 
 	if (!Find(KEY, bucket, it)) {
@@ -68,7 +68,7 @@ inline bool HashTable<Key, Value, HashFunc, bucketSize>::Erase(const Key& KEY)
 template<typename Key, typename Value, uint16_t HashFunc(const Key&), int bucketSize>
 inline bool HashTable<Key, Value, HashFunc, bucketSize>::Find(const Key& KEY, Value& destination)const
 {
-	const DoublyLinkedList<Pair>& BUCKET = buckets[GetBucketIndex(key)];
+	const DoublyLinkedList<Pair>& BUCKET = buckets[GetBucketIndex(KEY)];
 	DoublyLinkedList<Pair>::ConstIterator constIt;
 
 	if (Find(KEY, BUCKET, constIt)) {
@@ -82,7 +82,7 @@ inline bool HashTable<Key, Value, HashFunc, bucketSize>::Find(const Key& KEY, Va
 template<typename Key, typename Value, uint16_t HashFunc(const Key&), int bucketSize>
 inline int HashTable<Key, Value, HashFunc, bucketSize>::GetBucketIndex(const Key& KEY) const
 {
-	return HashFunc(key) % bucketSize;
+	return HashFunc(KEY) % bucketSize;
 }
 
 template<typename Key, typename Value, uint16_t HashFunc(const Key&), int bucketSize>
