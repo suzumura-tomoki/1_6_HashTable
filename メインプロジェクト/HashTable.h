@@ -38,26 +38,26 @@ public:
 
 	/**
 	 * @brief 指定したキーの場所にデータを挿入します
-	 * @param[in] key キー　使用済みのキーだと挿入が行われません
+	 * @param[in] KEY キー　使用済みのキーだと挿入が行われません
 	 * @param[in] value データ
 	 * @return 使用済みのキーで挿入すると挿入に失敗してfalseとなります
 	 */
-	bool Insert(const Key& key, Value value);
+	bool Insert(const Key& KEY, Value value);
 
 	/**
 	 * @brief データを削除します
-	 * @param[in] key 格納場所を示すキー
+	 * @param[in] KEY 格納場所を示すキー
 	 * @return キーと一致するデータが見つからないと削除に失敗してfalseとなります
 	 */
-	bool Erase(const Key& key);
+	bool Erase(const Key& KEY);
 
 	/**
 	 * @brief データを検索します
-	 * @param[in] key 格納場所を示すキー
+	 * @param[in] KEY 格納場所を示すキー
 	 * @param[out] destination 検索したデータのコピー先
 	 * @return キーと一致するデータが見つからないと検索に失敗してfalseとなります
 	 */
-	bool Find(const Key& key, Value& destination)const;
+	bool Find(const Key& KEY, Value& destination)const;
 
 private:
 
@@ -68,12 +68,16 @@ private:
 		Value value;
 	};
 
-	/** @brief 格納するバケットの添え字を取得します */
-	const int& GetBucketIndex(const Key& key)const;
+	/**
+	 * @brief 格納するバケットの番号を取得します
+	 * @param[in] KEY 格納場所を示すキー
+	 * @return 格納するバケットの番号
+	 */
+	int GetBucketIndex(const Key& KEY)const;
 
 	/** 
 	 * @brief バケットからキーが一致する要素のイテレータを取得します 
-	 * @param[in] key 格納場所を示すキー
+	 * @param[in] KEY 格納場所を示すキー
 	 * @param[out] destination 検索した要素のイテレータを格納します
 	 * @return キーと一致するデータが見つからないと検索に失敗してfalseとなります
 	 */
