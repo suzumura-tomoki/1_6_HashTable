@@ -76,9 +76,9 @@ inline bool HashTable<Key, Value, HashFunc, bucketSize>::Erase(const Key& KEY)
 template<typename Key, typename Value, uint16_t HashFunc(const Key&), int bucketSize>
 inline bool HashTable<Key, Value, HashFunc, bucketSize>::Find(const Key& KEY, Value& destination)const
 {
-	const DoublyLinkedList<Pair>& bucket = buckets[GetBucketIndex(key)];
-	const int&& BUCKET_SIZE = bucket.GetSize();
-	DoublyLinkedList<Pair>::ConstIterator it = bucket.GetConstBegin();
+	const DoublyLinkedList<Pair>& BUCKET = buckets[GetBucketIndex(key)];
+	const int&& BUCKET_SIZE = BUCKET.GetSize();
+	DoublyLinkedList<Pair>::ConstIterator it = BUCKET.GetConstBegin();
 
 	//“¯‚¶ƒL[‚Ì—v‘f‚ğ’Tõ
 	for (int i = 0; i < BUCKET_SIZE; i++) {
