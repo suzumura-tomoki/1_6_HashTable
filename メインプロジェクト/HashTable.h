@@ -24,8 +24,9 @@ public:
 	/** @brief コンストラクタ */
 	HashTable();
 
+	//TODO ディープコピーについて調べる
 	/** @brief デフォルトコピーコンストラクタ */
-	HashTable(const HashTable&) = default;
+	HashTable(const HashTable&) = delete;//ディープコピーでも良い
 
 	/** @brief デストラクタ */
 	virtual ~HashTable();
@@ -78,10 +79,11 @@ private:
 	/** 
 	 * @brief バケットからキーが一致する要素のイテレータを取得します 
 	 * @param[in] KEY 格納場所を示すキー
-	 * @param[out] destination 検索した要素のイテレータを格納します
+	 * @param[in] BUCKET 探索するバケット
+	 * @param[out] destination 検索した要素のイテレータを格納します。検索に失敗するとダミーノードを示します。
 	 * @return キーと一致するデータが見つからないと検索に失敗してfalseとなります
 	 */
-	bool Find(const Key& KEY, typename DoublyLinkedList<Pair>::ConstIterator& destination)const;
+	bool Find(const Key& KEY, const DoublyLinkedList<Pair> BUCKET, typename DoublyLinkedList<Pair>::ConstIterator& destination)const;
 
 	/** @brief バケットの配列 */
 	std::array<DoublyLinkedList<Pair>, bucketSize> buckets;
