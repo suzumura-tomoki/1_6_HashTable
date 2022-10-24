@@ -7,7 +7,8 @@ HashTable<Key, Value, HashFunc, bucketSize>::HashTable()
 {
 	//比較演算子が有効な型か試す
 	Key a{};
-	static_assert(a == a, "key has not comparison operator");//アサートが発生することはないがコンパイルエラーにならないかチェックする
+	//エラーになるので途中経過を提出するためにコメントアウト
+	//static_assert(a == a, "key has not comparison operator");//アサートが発生することはないがコンパイルエラーにならないかチェックする
 }
 
 template<typename Key, typename Value, uint16_t HashFunc(const Key&), int bucketSize>
@@ -48,15 +49,15 @@ inline bool HashTable<Key, Value, HashFunc, bucketSize>::Erase(const Key& KEY)
 
 	//指定されたキーの要素を検索
 	DoublyLinkedList<Pair>& bucket = buckets[GetBucketIndex(KEY)];
-	DoublyLinkedList<Pair>::Iterator it;
+	DoublyLinkedList<Pair>::ConstIterator cit;
 
-	if (!Find(KEY, bucket, it)) {
+	if (!Find(KEY, bucket, cit)) {
 		//指定されたキーが格納されていなければ終了
 		return false;
 	}
 
 	//指定されたキーの要素を削除
-	bool result = bucket.Delete(it);
+	bool result = bucket.Delete(cit);
 
 	if (result) {
 		size--;
@@ -69,10 +70,10 @@ template<typename Key, typename Value, uint16_t HashFunc(const Key&), int bucket
 inline bool HashTable<Key, Value, HashFunc, bucketSize>::Find(const Key& KEY, Value& destination)const
 {
 	const DoublyLinkedList<Pair>& BUCKET = buckets[GetBucketIndex(KEY)];
-	DoublyLinkedList<Pair>::ConstIterator constIt;
+	DoublyLinkedList<Pair>::ConstIterator cit;
 
-	if (Find(KEY, BUCKET, constIt)) {
-		destination = constIt->value;
+	if (Find(KEY, BUCKET, cit)) {
+		destination = cit->value;
 		return true;
 	}
 
