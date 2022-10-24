@@ -36,29 +36,28 @@ public:
 	 */
 	int GetSize()const;
 
-	//TODO @returnなどの内容を詳しく書く
 	/**
-	 * @brief データを挿入します
-	 * @param[in] key キー
+	 * @brief 指定したキーの場所にデータを挿入します
+	 * @param[in] key キー　使用済みのキーだと挿入が行われません
 	 * @param[in] value データ
-	 * @return 成否
+	 * @return 使用済みのキーで挿入すると挿入に失敗してfalseとなります
 	 */
 	bool Insert(Key key, Value value);
 
 	//TODO @returnなどの内容を詳しく書く
 	/**
 	 * @brief データを削除します
-	 * @param[in] key キー
-	 * @return 成否　キーと一致するデータが見つからないと削除に失敗してfalseを返します\n
+	 * @param[in] key 格納場所を示すキー
+	 * @return キーと一致するデータが見つからないと削除に失敗してfalseとなります
 	 */
 	bool Erase(Key key);
 
 	//TODO @returnなどの内容を詳しく書く
 	/**
 	 * @brief データを検索します
-	 * @param[in] key キー
+	 * @param[in] key 格納場所を示すキー
 	 * @param[out] destination 検索したデータのコピー先
-	 * @return 成否
+	 * @return キーと一致するデータが見つからないと検索に失敗してfalseとなります
 	 */
 	bool Find(Key key, Value& destination)const;
 
