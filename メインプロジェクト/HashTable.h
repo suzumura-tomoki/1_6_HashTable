@@ -7,7 +7,7 @@
  *		  格納場所をハッシュ値によって管理します\n
  *		  キーによるランダムアクセスが可能です\n
  *		  ハッシュ値が衝突するとチェイン法を用いて格納します
- * @tparam Key キーの型
+ * @tparam Key キーの型 比較演算子が有効なもの
  * @tparam Value 格納する値の型
  * @tparam HashFunc ハッシュ関数
  * @tparam bucketSize バケットの数　デフォルトは１６
@@ -71,8 +71,13 @@ private:
 		Value value;
 	};
 
+	/** @brief 格納するバケットの添え字を取得します */
+	const int& GetBucketIndex(Key& key)const;
+
 	/** @brief バケットの配列 */
 	std::array<DoublyLinkedList<Pair>, bucketSize> buckets;
+
+	uint16_t size;
 };
 
 #include"HashTable.inl"

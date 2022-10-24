@@ -12,7 +12,7 @@
 	@details	ID:ハッシュテーブル-0\n
 				コンパイルエラーになれば成功です
 *//***********************************************************************************/
-TEST(TestHashTable, IrregularHashFunc) {
+TEST(ManualTestHashTable, IrregularHashFunc) {
 #ifdef IRREGULAR_HASH_FUNC
 	void IrrgularFunc(const int& key);
 	HashTable<int, int, IrrgularFunc, BUCKET_SIZE> table;
@@ -26,7 +26,7 @@ TEST(TestHashTable, IrregularHashFunc) {
 	@details	ID:ハッシュテーブル-12\n
 				コンパイルが通ると成功です\n
 *//***********************************************************************************/
-TEST(TestHashTable, GetSizeWhenConst) {
+TEST(ManualTestHashTable, GetSizeWhenConst) {
 #ifdef GET_SIZE_WHEN_CONST
 	const HashTable<int, int, HashFunc, BUCKET_SIZE> table;
 	EXPECT_EQ(0, table.GetSize());
@@ -40,7 +40,7 @@ TEST(TestHashTable, GetSizeWhenConst) {
 	@details	ID:ハッシュテーブル-18\n
 				コンパイルエラーになれば成功です\n
 *//***********************************************************************************/
-TEST(TestHashTable, InsertWhenConst) {
+TEST(ManualTestHashTable, InsertWhenConst) {
 #ifdef INSERT_WHEN_CONST
 	const HashTable<int, int, HashFunc, BUCKET_SIZE> table;
 	table.Insert(0, 0);//ここでエラー
@@ -54,7 +54,7 @@ TEST(TestHashTable, InsertWhenConst) {
 	@details	ID:ハッシュテーブル-26\n
 				コンパイルエラーになれば成功です\n
 *//***********************************************************************************/
-TEST(TestHashTable, EraseWhenConst) {
+TEST(ManualTestHashTable, EraseWhenConst) {
 #ifdef ERASE_WHEN_CONST
 	const HashTable<int, int, HashFunc, BUCKET_SIZE> table;
 	table.Erase(0);//ここでエラー
@@ -68,7 +68,7 @@ TEST(TestHashTable, EraseWhenConst) {
 	@details	ID:ハッシュテーブル-34\n
 				コンパイルが通ると成功です\n
 *//***********************************************************************************/
-TEST(TestHashTable, FindWhenConst) {
+TEST(ManualTestHashTable, FindWhenConst) {
 #ifdef FIND_WHEN_CONST
 	const HashTable<int, int, HashFunc, BUCKET_SIZE> table;
 	int dest;
