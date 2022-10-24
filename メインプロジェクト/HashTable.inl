@@ -94,7 +94,7 @@ inline bool HashTable<Key, Value, HashFunc, bucketSize>::Find(const Key& KEY, Va
 }
 
 template<typename Key, typename Value, uint16_t HashFunc(const Key&), int bucketSize>
-inline const int& HashTable<Key, Value, HashFunc, bucketSize>::GetBucketIndex(const Key& KEY) const
+inline int HashTable<Key, Value, HashFunc, bucketSize>::GetBucketIndex(const Key& KEY) const
 {
 	return HashFunc(key) % bucketSize;
 }
