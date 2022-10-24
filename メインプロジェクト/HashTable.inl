@@ -7,9 +7,7 @@ HashTable<Key, Value, HashFunc, bucketSize>::HashTable()
 {
 	//比較演算子が有効な型か試す
 	Key a{};
-	Key b{};
-	bool result;
-	result = a == b;
+	static_assert(a == a, "key has not comparison operator");//アサートが発生することはないがコンパイルエラーにならないかチェックする
 }
 
 template<typename Key, typename Value, uint16_t HashFunc(const Key&), int bucketSize>
