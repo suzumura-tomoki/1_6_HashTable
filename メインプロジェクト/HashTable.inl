@@ -90,15 +90,22 @@ template<typename Key, typename Value, uint16_t HashFunc(const Key&), int bucket
 inline bool HashTable<Key, Value, HashFunc, bucketSize>::Find(const Key& KEY, const DoublyLinkedList<Pair> BUCKET, typename DoublyLinkedList<Pair>::ConstIterator& destination) const
 {
 	const int BUCKET_SIZE = BUCKET.GetSize();
-	destination = BUCKET.GetConstBegin();
+
+	//バケットが空であれば終了
+	if (BUCKET_SIZE == 0) {
+		return false;
+	}
+
+	DoublyLinkedList<Pair>::ConstIterator cit = BUCKET.GetConstBegin();
 
 	//同じキーの要素を探索
 	for (int i = 0; i < BUCKET_SIZE; i++) {
-		if (destination->key == KEY)//コンストラクタで比較演算子が有効なものか判断
+		if (cit->key == KEY)//コンストラクタで比較演算子が有効なものか判断
 		{
+			destination = cit;
 			return true;
 		}
-		destination++;
+		cit++;
 	}
 	return false;
 }
