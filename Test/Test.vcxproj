@@ -54,9 +54,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Test_HashTable.cpp" />
+    <ClCompile Include="Test_List.cpp" />
     <ClCompile Include="Test_Queue.cpp" />
     <ClCompile Include="Test_Sort.cpp" />
-    <ClCompile Include="Test_list.cpp" />
     <ClCompile Include="Test_Stack.cpp" />
   </ItemGroup>
   <ItemGroup>
