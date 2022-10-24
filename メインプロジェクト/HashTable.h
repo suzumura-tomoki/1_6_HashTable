@@ -42,14 +42,14 @@ public:
 	 * @param[in] value データ
 	 * @return 使用済みのキーで挿入すると挿入に失敗してfalseとなります
 	 */
-	bool Insert(Key key, Value value);
+	bool Insert(const Key& key, Value value);
 
 	/**
 	 * @brief データを削除します
 	 * @param[in] key 格納場所を示すキー
 	 * @return キーと一致するデータが見つからないと削除に失敗してfalseとなります
 	 */
-	bool Erase(Key key);
+	bool Erase(const Key& key);
 
 	/**
 	 * @brief データを検索します
@@ -57,7 +57,7 @@ public:
 	 * @param[out] destination 検索したデータのコピー先
 	 * @return キーと一致するデータが見つからないと検索に失敗してfalseとなります
 	 */
-	bool Find(Key key, Value& destination)const;
+	bool Find(const Key& key, Value& destination)const;
 
 private:
 
@@ -69,7 +69,7 @@ private:
 	};
 
 	/** @brief 格納するバケットの添え字を取得します */
-	const int& GetBucketIndex(Key& key)const;
+	const int& GetBucketIndex(const Key& key)const;
 
 	/** @brief バケットの配列 */
 	std::array<DoublyLinkedList<Pair>, bucketSize> buckets;

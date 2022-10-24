@@ -25,7 +25,7 @@ inline int HashTable<Key, Value, HashFunc, bucketSize>::GetSize() const
 }
 
 template<typename Key, typename Value, uint16_t HashFunc(const Key&), int bucketSize>
-inline bool HashTable<Key, Value, HashFunc, bucketSize>::Insert(Key key, Value value)
+inline bool HashTable<Key, Value, HashFunc, bucketSize>::Insert(const Key& key, Value value)
 {
 	//“¯‚¶ƒL[‚ªŠi”[‚³‚ê‚Ä‚¢‚é‚Æ‘}“ü‚µ‚È‚¢
 	int dest;
@@ -45,7 +45,7 @@ inline bool HashTable<Key, Value, HashFunc, bucketSize>::Insert(Key key, Value v
 }
 
 template<typename Key, typename Value, uint16_t HashFunc(const Key&), int bucketSize>
-inline bool HashTable<Key, Value, HashFunc, bucketSize>::Erase(Key key)
+inline bool HashTable<Key, Value, HashFunc, bucketSize>::Erase(const Key& key)
 {
 	//w’è‚³‚ê‚½ƒL[‚ªŠi”[‚³‚ê‚Ä‚¢‚È‚¯‚ê‚ÎI—¹
 	int dest;
@@ -76,7 +76,7 @@ inline bool HashTable<Key, Value, HashFunc, bucketSize>::Erase(Key key)
 }
 
 template<typename Key, typename Value, uint16_t HashFunc(const Key&), int bucketSize>
-inline bool HashTable<Key, Value, HashFunc, bucketSize>::Find(Key key, Value& destination)const
+inline bool HashTable<Key, Value, HashFunc, bucketSize>::Find(const Key& key, Value& destination)const
 {
 	const DoublyLinkedList<Pair>& bucket = buckets[GetBucketIndex(key)];
 	const int&& BUCKET_SIZE = bucket.GetSize();
@@ -96,7 +96,7 @@ inline bool HashTable<Key, Value, HashFunc, bucketSize>::Find(Key key, Value& de
 }
 
 template<typename Key, typename Value, uint16_t HashFunc(const Key&), int bucketSize>
-inline const int& HashTable<Key, Value, HashFunc, bucketSize>::GetBucketIndex(Key& key) const
+inline const int& HashTable<Key, Value, HashFunc, bucketSize>::GetBucketIndex(const Key& key) const
 {
 	return HashFunc(key) % bucketSize;
 }
