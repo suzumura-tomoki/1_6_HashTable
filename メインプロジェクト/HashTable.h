@@ -44,7 +44,6 @@ public:
 	 */
 	bool Insert(Key key, Value value);
 
-	//TODO @returnなどの内容を詳しく書く
 	/**
 	 * @brief データを削除します
 	 * @param[in] key 格納場所を示すキー
@@ -52,7 +51,6 @@ public:
 	 */
 	bool Erase(Key key);
 
-	//TODO @returnなどの内容を詳しく書く
 	/**
 	 * @brief データを検索します
 	 * @param[in] key 格納場所を示すキー
