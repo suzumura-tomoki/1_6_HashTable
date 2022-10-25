@@ -5,10 +5,7 @@ template<typename Key, typename Value, uint16_t HashFunc(const Key&), int bucket
 HashTable<Key, Value, HashFunc, bucketSize>::HashTable()
 	:buckets(), size()
 {
-	//比較演算子が有効な型か試す
-	Key a{};
-	//エラーになるので途中経過を提出するためにコメントアウト
-	//static_assert(a == a, "key has not comparison operator");//アサートが発生することはないがコンパイルエラーにならないかチェックする
+	//何もしない
 }
 
 template<typename Key, typename Value, uint16_t HashFunc(const Key&), int bucketSize>
