@@ -43,7 +43,7 @@ public:
 	 * @param[in] value データ
 	 * @return 使用済みのキーで挿入すると挿入に失敗してfalseとなります
 	 */
-	bool Insert(const Key& KEY, Value value);
+	bool Insert(const Key& KEY, const Value& VALUE);
 
 	/**
 	 * @brief データを削除します
@@ -83,7 +83,7 @@ private:
 	 * @param[out] destination 検索した要素のイテレータを格納します。検索に失敗するとダミーノードを示します。
 	 * @return キーと一致するデータが見つからないと検索に失敗してfalseとなります
 	 */
-	bool Find(const Key& KEY, const DoublyLinkedList<Pair> BUCKET, typename DoublyLinkedList<Pair>::ConstIterator& destination)const;
+	bool FindFromBucket(const Key& KEY, const DoublyLinkedList<Pair>& BUCKET, typename DoublyLinkedList<Pair>::ConstIterator& destination)const;
 
 	/** @brief バケットの配列 */
 	std::array<DoublyLinkedList<Pair>, bucketSize> buckets;

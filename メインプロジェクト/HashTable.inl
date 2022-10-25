@@ -24,7 +24,7 @@ inline int HashTable<Key, Value, HashFunc, bucketSize>::GetSize() const
 }
 
 template<typename Key, typename Value, uint16_t HashFunc(const Key&), int bucketSize>
-inline bool HashTable<Key, Value, HashFunc, bucketSize>::Insert(const Key& KEY, Value value)
+inline bool HashTable<Key, Value, HashFunc, bucketSize>::Insert(const Key& KEY, const Value& VALUE)
 {
 	//同じキーが格納されていると挿入しない
 	int dest;
@@ -34,7 +34,7 @@ inline bool HashTable<Key, Value, HashFunc, bucketSize>::Insert(const Key& KEY, 
 
 	//バケットの後ろに挿入
 	DoublyLinkedList<Pair>& bucket = buckets[GetBucketIndex(KEY)];
-	bool&& result = bucket.Insert(bucket.GetEnd(), Pair({ KEY, value }));
+	bool&& result = bucket.Insert(bucket.GetEnd(), Pair({ KEY, VALUE }));
 
 	if (result) {
 		size++;
@@ -51,7 +51,7 @@ inline bool HashTable<Key, Value, HashFunc, bucketSize>::Erase(const Key& KEY)
 	DoublyLinkedList<Pair>& bucket = buckets[GetBucketIndex(KEY)];
 	DoublyLinkedList<Pair>::ConstIterator cit;
 
-	if (!Find(KEY, bucket, cit)) {
+	if (!FindFromBucket(KEY, bucket, cit)) {
 		//指定されたキーが格納されていなければ終了
 		return false;
 	}
@@ -72,7 +72,7 @@ inline bool HashTable<Key, Value, HashFunc, bucketSize>::Find(const Key& KEY, Va
 	const DoublyLinkedList<Pair>& BUCKET = buckets[GetBucketIndex(KEY)];
 	DoublyLinkedList<Pair>::ConstIterator cit;
 
-	if (Find(KEY, BUCKET, cit)) {
+	if (FindFromBucket(KEY, BUCKET, cit)) {
 		destination = cit->value;
 		return true;
 	}
@@ -87,7 +87,7 @@ inline int HashTable<Key, Value, HashFunc, bucketSize>::GetBucketIndex(const Key
 }
 
 template<typename Key, typename Value, uint16_t HashFunc(const Key&), int bucketSize>
-inline bool HashTable<Key, Value, HashFunc, bucketSize>::Find(const Key& KEY, const DoublyLinkedList<Pair> BUCKET, typename DoublyLinkedList<Pair>::ConstIterator& destination) const
+inline bool HashTable<Key, Value, HashFunc, bucketSize>::FindFromBucket(const Key& KEY, const DoublyLinkedList<Pair>& BUCKET, typename DoublyLinkedList<Pair>::ConstIterator& destination) const
 {
 	const int BUCKET_SIZE = BUCKET.GetSize();
 
@@ -96,16 +96,15 @@ inline bool HashTable<Key, Value, HashFunc, bucketSize>::Find(const Key& KEY, co
 		return false;
 	}
 
-	DoublyLinkedList<Pair>::ConstIterator cit = BUCKET.GetConstBegin();
+	destination = BUCKET.GetConstBegin();
 
 	//同じキーの要素を探索
 	for (int i = 0; i < BUCKET_SIZE; i++) {
-		if (cit->key == KEY)//コンストラクタで比較演算子が有効なものか判断
+		if (destination->key == KEY)//コンストラクタで比較演算子が有効なものか判断
 		{
-			destination = cit;
 			return true;
 		}
-		cit++;
+		destination++;
 	}
 	return false;
 }
